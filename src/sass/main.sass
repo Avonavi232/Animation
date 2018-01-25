@@ -1,0 +1,438 @@
+*
+  box-sizing: border-box
+
+html
+  min-width: 320px
+body
+  background-color: #e4e4e4
+  font-family: 'Roboto', sans-serif
+button, button:focus
+  outline: none
+
+/***********************************/
+/*************VARIABLES***********/
+/***********************************/
+$accent: #ecbd24
+$dark: #7b7b7b
+/***********************************/
+
+
+
+
+/***********************************/
+/*************APP-HEADER************/
+/***********************************/
+.app-header
+  height: 12rem
+
+.app-logo
+  padding-top: 1rem
+  span
+    line-height: 12rem
+    font: 3.5rem 'Kristen ITC Regular', sans-serif
+    color: $accent
+
+.app-upload
+  text-align: right
+  &__button
+    margin-top: 1.7rem
+
+/***********************************/
+
+
+
+/***********************************/
+/*************HELPERS************/
+/***********************************/
+.box
+  height: 100px
+  width: 100px
+  border: 2px solid green
+  background-color: #ff94e9
+.bottomed
+  position: absolute
+  bottom: 0
+  width: 100%
+
+.container
+  //border: 1px solid red
+
+/***********************************/
+
+
+
+/***********************************/
+/*************MAIN CARDS************/
+/***********************************/
+.card-thumbnail
+  position: relative
+  width: 215px
+  height: 215px
+  margin: 0 auto
+  margin-bottom: 3.8rem
+  @media (min-width: 992px)
+    width: 285px
+    height: 285px
+  @media (min-width: 1200px)
+    width: 350px
+    height: 350px
+  &:hover
+    cursor: pointer
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
+  &__overlay
+    opacity: 0
+    position: absolute
+    width: 100%
+    height: 100%
+    background-color: rgba(0, 0, 0, .6)
+    transition: all .5s
+  &__stats
+    opacity: 0
+    position: absolute
+    width: 100%
+    height: 100%
+    transition: all .3s
+  &:hover &__overlay,
+  &:hover &__stats
+    opacity: 1
+
+.stats table
+  width: 70%
+  height: 70%
+  margin: 0 auto
+  margin-top: 2rem
+  text-align: center
+
+.stat
+  display: inline-block
+  color: white
+  font-size: 2rem
+  [class^="icon"], [class^=" icon"]
+    display: inline-block
+    margin-right: 7px
+    transition: all .2s
+  &:hover [class^="icon"],
+  &:hover [class^=" icon"]
+    color: $accent
+
+
+/***********************************/
+
+
+
+/***********************************/
+/*************BUTTONS***************/
+/***********************************/
+.button
+  border: none
+  outline: none
+  background-color: transparent
+  font: 2rem 'Roboto Condensed', sans-serif
+  padding: 5px 20px
+  border-radius: 10px
+  transition: all .3s
+  font-size: 1.6rem
+  &#{&}_primary
+    color: $accent
+    border: 2px solid $accent
+    background-color: transparent
+    &:hover
+      color: white
+      border: 2px solid transparent
+      background-color: $accent
+  &#{&}_secondary
+    color: $dark
+    border: 2px solid $dark
+    background-color: transparent
+    &:hover
+      color: white
+      border: 2px solid transparent
+      background-color: $dark
+/***********************************/
+
+
+
+/***********************************/
+/***************MODAL***************/
+/***********************************/
+.modal
+  display: none
+  align-items: center
+  justify-content: center
+  position: fixed
+  left: 0
+  top: 0
+  width: 100%
+  height: 100%
+  background-color: rgba(0, 0, 0, .7)
+  overflow: auto
+  z-index: 1
+  transition: all .4s
+  img
+    max-width: 100%
+    max-height: 100%
+  .modal-content
+    background-color: #f3f2f2
+    border: 1px solid #888
+    display: table
+    .modal-content__row
+      display: table-row
+      height: 100%
+      .image-mainpic
+        display: table-cell
+        float: none
+        vertical-align: middle
+      .image-sidebar
+        display: table-cell
+        float: none
+        vertical-align: top
+  &__close
+    user-select: none
+    cursor: pointer
+    color: $dark
+    float: right
+    font-size: 3rem
+    font-weight: bold
+    transition: all .2s
+    &:hover
+      color: darken($dark, 20%)
+  &__footer
+    padding: 1.5rem 0
+  &__footer
+    text-align: center
+    button
+      margin-left: 1.5rem
+      padding-left: 3rem
+      padding-right: 3rem
+
+.fadeIn
+  animation-name: fadeIn
+  animation-duration: .3s
+  animation-fill-mode: forwards
+.fadeOut
+  animation-name: fadeOut
+  animation-duration: .3s
+  animation-fill-mode: forwards
+@keyframes fadeIn
+  from
+    opacity: 0
+  to
+    opacity: 1
+@keyframes fadeOut
+  from
+    opacity: 1
+  to
+    opacity: 0
+
+body.modal-opened
+  overflow: hidden
+
+/***********UPLOADS-MODAL***********/
+.upload-modal
+  .modal__body
+    padding: 0 4rem
+  &__open-pic
+    margin-bottom: 3.5rem
+    display: inline-block
+  &__preview
+    display: inline-block
+    vertical-align: middle
+    img
+      max-height: 290px
+      max-width: 290px
+      @media (min-width: 992px)
+        max-width: 415px
+        max-height: 415px
+      @media (min-width: 1200px)
+        max-width: 515px
+        max-height: 515px
+  &__drop-area
+    display: inline-block
+    vertical-align: middle
+    background-color: #fff
+    width: 290px
+    height: 290px
+    text-align: center
+    font: 2.2rem 'Roboto', sans-serif
+    color: #dcdcdc
+    border: 4px dashed #dcdcdc
+    &#{&}_dragover
+      border-color: $accent
+      p
+        color: $accent
+        animation-name: dragOverP
+        animation-duration: 1s
+        animation-fill-mode: forwards
+
+    @media (min-width: 992px)
+      width: 415px
+      height: 415px
+    @media (min-width: 1200px)
+      width: 515px
+      height: 515px
+    p
+      width: 100%
+      height: 100%
+      display: flex
+      justify-content: center
+      align-items: center
+
+.upload-infoblock
+  margin-top: 30px
+  label
+    margin-right: 30px
+  label, input, textarea
+    font-family: 'Roboto', sans-serif
+    display: block
+    color: #666
+    width: 100%
+
+@keyframes dragOverP
+  0%
+    transform: rotate(0deg)
+  33%
+    transform: rotate(20deg)
+  66%
+    transform: rotate(-20deg)
+  100%
+    transform: rotate(0deg)
+
+.justified
+  text-align: justify
+  &:after
+    width: 100%
+    height: 0
+    visibility: hidden
+    overflow: hidden
+    content: ""
+    display: inline-block
+
+/***********IMAGE-MODAL*************/
+.show-pic-modal
+  .image
+    &-natural
+      width: 100%
+      height: 100%
+      img
+        max-width: 100%
+        max-height: 80vh
+      canvas
+        cursor: url(http://www.rw-designer.com/cursor-extern.php?id=2726), auto
+    &-author
+      text-align: left
+      color: $accent
+      font-weight: bold
+      font-size: 2rem
+      display: inline-block
+      vertical-align: middle
+    &-date
+      font-size: 1rem
+      display: inline-block
+      vertical-align: middle
+    &-comments
+      max-height: 200px
+      overflow-y: scroll
+    &-comment
+      margin-bottom: 1rem
+      &:last-of-type
+        margin-bottom: 0
+      &-author
+       font-weight: bold
+    &-action.stat
+      display: inline-block
+      color: $accent
+      margin: 1.5rem
+      margin-left: 0
+      &:last-of-type
+        margin-right: 0
+      span[class^="icon"],
+      span[class^=" icon"]
+        animation-name: iconOut
+        animation-duration: .2s
+        animation-fill-mode: forwards
+        animation-timing-function: linear
+        cursor: pointer
+      & span[class^="icon"]:hover,
+      & span[class^=" icon"]:hover
+        animation-name: iconIn
+        animation-delay: 0s
+        animation-duration: .2s
+    /**************/
+    &-art
+      position: absolute
+      left: 15px
+      right: 15px
+      top: 0
+      bottom: 0
+      transform: translateX(-600px)
+      transition: all .3s
+    &-infoblock
+      transform: translateX(0px)
+      transition: all .3s
+    &-sidebar
+      position: relative
+      overflow: hidden
+  .image-write-comment
+    margin-top: 30px
+    &__field
+      display: block
+      width: 100%
+    &__btn
+      margin-top: 1.5rem
+      font-size: 1.3rem
+
+
+
+
+@keyframes iconIn
+  from
+    transform: scale(1.0) rotate(0)
+  to
+    transform: scale(1.4) rotate(360deg)
+@keyframes iconOut
+  from
+    transform: scale(1.4) rotate(360deg)
+  to
+    transform: scale(1.0) rotate(0deg)
+
+
+
+
+
+
+/***********************************/
+
+
+
+/***********************************/
+/*************APP-HEADER************/
+/***********************************/
+
+/***********************************/
+
+
+
+/***********************************/
+/*************APP-HEADER************/
+/***********************************/
+
+/***********************************/
+
+
+
+/***********************************/
+/*************APP-HEADER************/
+/***********************************/
+
+/***********************************/
+
+
+
+/***********************************/
+/*************APP-HEADER************/
+/***********************************/
+
+/***********************************/
